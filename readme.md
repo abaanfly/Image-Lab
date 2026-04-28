@@ -10,9 +10,9 @@
 
 ## What This Project Does
 
-IMGLAB is a web application that lets a user upload any image and apply ten different image processing effects — all computed server-side in Python. The result is shown instantly using an interactive before/after drag slider, and can be downloaded with one click.
+IMGLAB is a web application that lets a user upload any image and apply ten different image processing effects, all computed server-side in Python. The result is shown instantly using an interactive before/after drag slider, and can be downloaded with one click.
 
-The goal was to go beyond basic colour filters and actually demonstrate the pixel-level mathematics that image manipulation is built on. Every effect in this project is implemented from scratch using Python logic — not CSS tricks or browser filters.
+The goal was to go beyond basic colour filters and actually demonstrate the pixel-level mathematics that image manipulation is built on. Every effect in this project is implemented from scratch using Python logic. not CSS tricks or browser filters.
 
 ---
 
@@ -22,7 +22,7 @@ From class, I understood that at its core, an image is just a 2D array of number
 
 The before/after drag slider was a deliberate design choice: it lets you see exactly what the algorithm changed, pixel by pixel, by dragging a line across the image. I thought that was a more honest and interesting way to show the work than just displaying two images side by side.
 
-I also wanted the project to feel like a real piece of software — with a clean UI, proper client-server architecture, and effects that actually required thinking about the math, not just calling one function.
+I also wanted the project to feel like a real piece of software,  with a clean UI, proper client server architecture, and effects that actually required thinking about the math, not just calling one function.
 
 ---
 
@@ -64,7 +64,7 @@ http://localhost:5000
 
 ## How to Use
 
-1. **Upload** any image — click the zone or drag and drop a file
+1. **Upload** any image. click the zone or drag and drop a file
 2. **Pick an effect** from the panel that appears
 3. **Drag the slider** on the result to compare before vs after
 4. **Download** the processed image using the button below
@@ -176,11 +176,11 @@ Valid effect names: `grayscale`, `invert`, `sepia`, `brightness`, `blur`, `sharp
 
 ## What I Learned
 
-Before this project, I assumed image filters were something browsers handled automatically. Building this made me realise that every "filter" is just arithmetic on a grid of numbers — and that is both simpler and more interesting than I expected.
+Before this project, I assumed image filters were something browsers handled automatically. Building this made me realise that every "filter" is just arithmetic on a grid of numbers. and that is both simpler and more interesting than I expected.
 
-The sepia matrix especially surprised me. The idea that you can shift the entire mood of a photograph through a few weighted sums felt like a small revelation — it made the linear algebra we touched on in class feel suddenly very real.
+The sepia matrix especially surprised me. The idea that you can shift the entire mood of a photograph through a few weighted sums felt like a small revelation. it made the linear algebra we touched on in class feel suddenly very real.
 
-The sketch effect was the hardest to reason about. The dodge blend formula does not look like it should produce pencil lines, but working through the math of why it does — how dividing by an inverted blur amplifies edges — was one of the most satisfying moments of this project.
+The sketch effect was the hardest to reason about. The dodge blend formula does not look like it should produce pencil lines, but working through the math of why it does — how dividing by an inverted blur amplifies edges, was one of the most satisfying moments of this project.
 
 I also learned a lot about client-server communication by figuring out how to pass image data as base64 strings in JSON. It is a clean and stateless pattern, and understanding it made the whole web architecture click for me.
 

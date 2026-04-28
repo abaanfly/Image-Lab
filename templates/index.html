@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Manipulation Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="logo">
+      <span class="logo-bracket">[</span>
+      IMG<span class="logo-accent">LAB</span>
+      <span class="logo-bracket">]</span>
+    </div>
+    <p class="tagline">Upload · Manipulate · Download</p>
+    <p class="byline">by <span class="byline-name">Abaan Ali</span> · CS-1102 · Ashoka University</p>
+  </header>
+
+  <!-- ── UPLOAD ZONE (full width, shown before image loaded) ── -->
+  <main>
+    <section class="upload-zone" id="uploadZone">
+      <div class="upload-inner">
+        <div class="upload-icon">⬆</div>
+        <p class="upload-title">Drop your image here</p>
+        <p class="upload-sub">or click to browse</p>
+        <input type="file" id="fileInput" accept="image/*" hidden/>
+      </div>
+    </section>
+
+    <!-- ── WORKSPACE: side-by-side layout (shown after upload) ── -->
+    <div class="workspace" id="workspace" style="display:none;">
+
+      <!-- LEFT: Effects Panel -->
+      <aside class="panel-left">
+        <h2 class="section-title">Choose an Effect</h2>
+
+        <div class="effects-grid">
+          <button class="effect-btn" data-effect="grayscale">
+            <span class="effect-icon">◐</span>
+            <span class="effect-name">Grayscale</span>
+          </button>
+          <button class="effect-btn" data-effect="invert">
+            <span class="effect-icon">◑</span>
+            <span class="effect-name">Invert</span>
+          </button>
+          <button class="effect-btn" data-effect="sepia">
+            <span class="effect-icon">◧</span>
+            <span class="effect-name">Sepia</span>
+          </button>
+          <button class="effect-btn" data-effect="brightness">
+            <span class="effect-icon">☀</span>
+            <span class="effect-name">Brightness</span>
+          </button>
+          <button class="effect-btn" data-effect="blur">
+            <span class="effect-icon">◎</span>
+            <span class="effect-name">Blur</span>
+          </button>
+          <button class="effect-btn" data-effect="sharpen">
+            <span class="effect-icon">◈</span>
+            <span class="effect-name">Sharpen</span>
+          </button>
+          <button class="effect-btn" data-effect="pixel_art">
+            <span class="effect-icon">▦</span>
+            <span class="effect-name">Pixel Art</span>
+          </button>
+          <button class="effect-btn" data-effect="sketch">
+            <span class="effect-icon">✏</span>
+            <span class="effect-name">Sketch</span>
+          </button>
+          <button class="effect-btn" data-effect="contrast">
+            <span class="effect-icon">◑</span>
+            <span class="effect-name">Contrast</span>
+          </button>
+          <button class="effect-btn" data-effect="edge_detect">
+            <span class="effect-icon">⬡</span>
+            <span class="effect-name">Edge Detect</span>
+          </button>
+        </div>
+
+        <!-- Actions pinned to bottom of left panel -->
+        <div class="actions">
+          <button class="btn-reset" id="resetBtn">↩ Upload New</button>
+          <button class="btn-download" id="downloadBtn">⬇ Download</button>
+        </div>
+      </aside>
+
+      <!-- RIGHT: Viewer -->
+      <section class="panel-right" id="panelRight">
+
+        <!-- Placeholder shown before any effect is clicked -->
+        <div class="viewer-placeholder" id="viewerPlaceholder">
+          <div class="placeholder-icon">←</div>
+          <p>Select an effect to see the result</p>
+        </div>
+
+        <!-- Loader -->
+        <div class="loader" id="loader" style="display:none;">
+          <div class="spinner"></div>
+          <p>Processing with Python…</p>
+        </div>
+
+        <!-- Before / After viewer -->
+        <div class="viewer" id="viewer" style="display:none;">
+          <h2 class="section-title">
+            Before <span class="vs">vs</span> After
+            <span class="active-effect-label" id="activeEffectLabel"></span>
+          </h2>
+
+          <!-- THE FIX: both images are absolutely positioned inside a sized container -->
+          <div class="compare-wrapper" id="compareWrapper">
+            <!-- AFTER image: always full width, sets the height -->
+            <img class="compare-after" id="resultImg" src="" alt="After"/>
+            <!-- BEFORE image: absolutely on top, clipped by JS -->
+            <div class="compare-before-clip" id="beforeClip">
+              <img class="compare-before" id="originalImg" src="" alt="Before"/>
+            </div>
+            <!-- Drag handle -->
+            <div class="compare-handle" id="compareHandle">
+              <div class="handle-line"></div>
+              <div class="handle-circle">⟺</div>
+              <div class="handle-line"></div>
+            </div>
+            <span class="compare-label left-label">ORIGINAL</span>
+            <span class="compare-label right-label">EDITED</span>
+          </div>
+        </div>
+
+      </section>
+
+    </div><!-- end .workspace -->
+  </main>
+
+  <footer>
+    <p>
+      Built by <strong>Abaan Ali</strong> · CS-1102 · Ashoka University ·
+      <span class="footer-tech">Flask · Pillow · OpenCV · NumPy</span>
+    </p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
